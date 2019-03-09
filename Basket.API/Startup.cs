@@ -222,6 +222,7 @@ namespace Microsoft.eShopOnContainers.Services.Basket.API
 
         private void RegisterAppInsights(IServiceCollection services)
         {
+            services.AddSingleton<ITelemetryInitializer>(new CloudRoleNameInitializer("basket"));
             services.AddApplicationInsightsTelemetry(Configuration);
             var orchestratorType = Configuration.GetValue<string>("OrchestratorType");
             
